@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"strings"
 
 	"gopkg.in/yaml.v2"
 )
@@ -151,7 +152,13 @@ func AddRoutes(ns string, dev string, ips []interface{}) {
 func PrintRoutes(ns string, dev string, ips []interface{}) {
 	for _, ip := range ips {
 		ip := ip.(string)
-		fmt.Printf("ip netns exec %s ip route add %s dev %s\n", ns, ip, dev)
+		if !strings.Contains(ip, ":") {
+			fmt.Printf("ip netns exec %s ip route add %s dev %s\n", ns, ip, dev)
+		} else {
+			// ip address:gateway address
+			parts := strings.Split(ip, ":")
+			fmt.Printf("ip netns exec %s ip route add %s via %s dev %s\n", ns, parts[0], parts[1], dev)
+		}
 	}
 }
 

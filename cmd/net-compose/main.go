@@ -12,6 +12,7 @@ import (
 
 func usage() {
 	fmt.Println("Usage: net-compose compose.yaml (up|down|dry-run|shell namespace)")
+	fmt.Println("You might need to run with root privileges")
 }
 
 func main() {

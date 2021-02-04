@@ -1,4 +1,4 @@
-module grapheo12.github.io/net-compose
+module net-compose
 
 go 1.15
 

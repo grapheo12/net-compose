@@ -2,9 +2,10 @@ INSTALL_DIR = /usr/bin
 GO = go
 FLAGS = GOOS=linux GOARCH=386
 
-net-compose: main.go
-	${FLAGS} ${GO} build
+.PHONY: build/net-compose
+build/net-compose:
+	${FLAGS} ${GO} build -o build/net-compose ./cmd/net-compose
 
 .PHONY: install
-install: net-compose	
-	@cp ./net-compose ${INSTALL_DIR}
+install: build/net-compose	
+	@cp build/net-compose ${INSTALL_DIR}

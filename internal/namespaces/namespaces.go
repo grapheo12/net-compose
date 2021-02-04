@@ -12,7 +12,7 @@ func RemoveNamespace(ns string) {
 
 func PrintNamespace(ns string) {
 	fmt.Printf("ip netns add %s\n", ns)
-	fmt.Printf("ip netns exec %s sysctl -w net.ipv4.ip_forward=1\n", ns)
+	fmt.Printf("ip netns exec %s sysctl -wq net.ipv4.ip_forward=1\n", ns)
 	fmt.Printf("ip netns exec %s ip link set lo up\n", ns)
 }
 

@@ -1,0 +1,78 @@
+namespaces:
+  - N1
+  - N2
+  - N3
+  - N4
+  - N5
+  - N6
+
+devices:
+  veth:
+    - V1:
+        namespace: N1
+        peer: V2
+        ip: 10.0.10.66/24
+    - V2:
+        namespace: N2
+        ip: 10.0.10.67/24
+
+    - V3:
+        namespace: N2
+        peer: V4
+        ip: 10.0.20.66/24
+    - V4:
+        namespace: N3
+        ip: 10.0.20.67/24
+
+    - V5:
+        namespace: N3
+        peer: V6
+        ip: 10.0.30.66/24
+    - V6:
+        namespace: N4
+        ip: 10.0.30.67/24
+
+    - V7:
+        namespace: N4
+        peer: V8
+        ip: 10.0.40.66/24
+    - V8:
+        namespace: N5
+        ip: 10.0.40.67/24
+
+    - V9:
+        namespace: N5
+        peer: V10
+        ip: 10.0.50.66/24
+    - V10:
+        namespace: N6
+        ip: 10.0.50.67/24
+
+    - V11:
+        namespace: N6
+        peer: V12
+        ip: 10.0.60.66/24
+    - V12:
+        namespace: N1
+        ip: 10.0.60.67/24
+
+    
+routes:
+  N1:
+   V1:
+    - 10.0.0.0/16:10.0.10.67
+  N2:
+   V3:
+    - 10.0.0.0/16:10.0.20.67
+  N3:
+   V5:
+    - 10.0.0.0/16:10.0.30.67
+  N4:
+   V7:
+    - 10.0.0.0/16:10.0.40.67
+  N5:
+   V9:
+    - 10.0.0.0/16:10.0.50.67
+  N6:
+   V11:
+    - 10.0.0.0/16:10.0.60.67
